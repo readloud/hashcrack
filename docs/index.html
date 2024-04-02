@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Hash Cracker</title>
+        <meta name="description" content="Hash Identifier & Cracker online. It uses AI/Machine learning model (Decision Forests). It detects Base32, Base64, BLAKE, MD4, MD5, NTLM, PBKDF2, SHA1, SHA256, SHA512, SHA3, Vigenere Cipher, etc.">
+        <link rel="icon" href="favicon.ico" />
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@hideckies">
+        <meta name="twitter:creator" content="@hideckies">
+        <meta property="og:url" content="https://hash-cracker.hdks.org">
+        <meta property="og:title" content="Hash Cracker">
+        <meta property="og:description" content="Hash Identifier & Cracker online. It uses AI/Machine learning Decision Forests model.">
+        <meta property="og:image" content="https://hash-cracker.hdks.org/img/screenshot.png">
+        <script src="ydf/inference.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.0/jszip.min.js"></script>
+        <script>
+            let ydf = null;
+            let model = null;
+
+            // Update from time to time when building the model.
+            const classes = ['BCrypt', 'sha512crypt', 'sha256crypt', 'sha1crypt', 'scrypt', 'md5crypt', 'SHA512', 'SHA384', 'SHA3-384', 'SHA3-256', 'SHA3-224', 'SHA256', 'SHA224', 'SHA1', 'SCRAM', 'ROT47', 'ROT13', 'PostgreSQL MD5', 'PHPass', 'PBKDF2-HMAC-SHA512', 'PBKDF2-HMAC-SHA256', 'Oracle 11g', 'Oracle 10g', 'NTLM', 'MySQL 4.1', 'MySQL 3.2.3', 'MSSQL 2005', 'MSSQL 2000', 'MD5', 'MD4', 'LM', 'LDAP salted SHA512', 'LDAP salted SHA256', 'LDAP salted SHA1', 'LDAP salted MD5', 'LDAP SHA1', 'LDAP MD5', 'Keccak-512', 'Keccak-384', 'Keccak-256', 'Keccak-224', 'Hex', 'HMAC-SHA512', 'HMAC-SHA256', 'HMAC-SHA1', 'Grub PBKDF2 SHA512', 'Django salted SHA1', 'Django salted MD5', 'Django PBKDF2 SHA256', 'Django PBKDF2 SHA1', 'Django DES Crypt', 'Django BCrypt SHA256', 'Django BCrypt', 'Django Argon2', 'Decimal', 'DES Crypt', 'Caesar', 'CRC-64', 'CRC-32', 'CRC-16', 'CISCO-PIX MD5', 'CISCO-ASA MD5', 'CISCO Type 7', 'Binary', 'Base64', 'Base32', 'BSDi Crypt', 'BLAKE2s', 'BLAKE2b', 'Atlassian PBKDF2 SHA1', 'Atbash', 'Argon2', 'Apache MD5 Crypt', 'SHA3-512', 'Vigenere'];
+
+            // Cracked hashes database
+            const MONGO_API = "https://data.mongodb-api.com/app/data-luewa/endpoint/data/v1";
+            
+            YggdrasilDecisionForests().then(function (m) {
+                ydf = m;
+
+                console.log("The library is loaded.");
+
+                ydf.loadModelFromUrl("model.zip").then((loadedModel) => {
+                    model = loadedModel;
+
+                    console.log("Model loaded.");
+                    // console.log("Input features:");
+                    // console.log(model.getInputFeatures());
+                });
+            });
+
+            document.addEventListener('DOMContentLoaded', () => {
+                let elemResults = document.getElementById('results');
+
+                const elemInput = document.getElementById('hash');
+                const elemBtn = document.getElementById('identify');
+                
+                // Infer using the model
+                elemBtn.addEventListener('click', () => {
+                    // Initialize the results
+                    elemResults.innerHTML = '';
+
+                    if (model == null) {
+                        console.log("Model is not loaded.");
+                        return;
+                    }
+
+                    let hash = elemInput.value;
+                    if (hash == "") {
+                        console.log("Hash not given.");
+                        return;
+                    }
+
+                    // Adjust the hash text
+                    hash = hash.replace(/\s/g, "");
+
+                    // Create feature values
+                    let features = createFeatures(hash);
+                    // console.log("Features:");
+                    // console.log(features);
+
+                    // Prediction
+                    let predictions = model.predict(features);
+
+                    let obj = {};
+                    predictions.forEach((pred, idx) => {
+                        obj[classes[idx]] = pred;
+                    });
+
+                    // Sort
+                    const arr = [];
+                    const keys = Object.keys(obj);
+                    const values = Object.values(obj);
+                    values.forEach((val, idx) => {
+                        const key = keys[idx];
+                        const o = {
+                            key,
+                            val
+                        };
+                        arr.push(o);
+                    });
+                    arr.sort((a, b) => {
+                        return b.val - a.val;
+                    });
+
+                    // Display the result
+                    arr.forEach((o, i) => {
+                        if (i >= 10 || o.val <= 0.00001) { return; }
+                        let elemResult = document.createElement("div");
+                        elemResult.classList.add("result");
+                        let elemSpanKey = document.createElement("span");
+                        elemSpanKey.classList.add("hash-type");
+                        elemSpanKey.innerText = o.key;
+                        let elemSpanVal = document.createElement("span");
+                        elemSpanVal.classList.add("probability");
+                        elemSpanVal.innerText = new Intl.NumberFormat('en-US', {
+                            style: 'percent',
+                            minimumFractionDigits: 3,
+                            maximumFractionDigits: 3
+                        }).format(o.val);
+                        elemResult.appendChild(elemSpanKey);
+                        elemResult.appendChild(elemSpanVal);
+                        elemResults.appendChild(elemResult);
+                    });
+
+                    // Crack hashes
+                    let resList = elemResults.querySelectorAll(".result");
+                    resList.forEach((item) => {
+                        item.addEventListener('click', () => {
+                            let hashType = item.querySelector(".hash-type").innerText;
+                            // console.log(`Crack ${hash} with ${hashType}`);
+                        });
+                    });
+                })
+            });
+
+            function createFeatures(hash) {
+                let scheme = "None";
+                let schmMatch = hash.match(/^(\$[0-9a-zA-Z]+\$|\{[0-9a-zA-Z]+\})/);
+                if (schmMatch) {
+                    scheme = schmMatch[0];
+                }
+
+                let features = {
+                    scheme: [scheme],
+                    num_of_chars: [hash.length],
+                    contains_bit_only: [Number(!/[^01]/.test(hash))],
+                    contains_decimal_only: [Number(!/[^0-9]/.test(hash))],
+                    contains_hex_only: [Number(/^[0-9a-fA-F]*$/.test(hash))],
+                    contains_alpha_only: [Number(/^[a-zA-Z]*$/.test(hash))],
+                    contains_upper_case_only: [Number(hash == hash.toUpperCase())],
+                    contains_lower_case_only: [Number(hash == hash.toLowerCase())],
+                    contains_mixed_upper_lower_case: [Number(/[A-Z]/.test(hash) & /[a-z]/.test(hash))],
+                    contains_equal: [Number(/\=/.test(hash))],
+                    contains_slash: [Number(/\//.test(hash))],
+                    contains_dot: [Number(/\./.test(hash))],
+                    contains_colon: [Number(/\:/.test(hash))],
+                    contains_special_chars: [Number(/\W/.test(hash))],
+                };
+                return features;
+            }
+        </script>
+        <style>
+            :root {
+                --color-black: #000000;
+                --color-gray-dark: #828a89;
+                --color-gray: #a2aaa9;
+                --color-gray-light: #e2eae9;
+                --color-blue: #1060ba;
+                --color-white: #ffffff;
+            }
+
+            * {
+                box-sizing: border-box;
+            }
+
+            html,body {
+                width: 100vw;
+                margin: 0;
+                padding: 0;
+            }
+            body {
+                background-color: var(--color-white);
+                font-size: 16px;
+                font-family:cursive;
+            }
+
+            a {
+                color: var(--color-blue);
+                font-weight: bold;
+            }
+
+            main {
+                margin: 72px auto;
+                width: 50%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            header {
+                width: 100%;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+            }
+            header #title {
+                margin: 12px 0;
+                font-size: 2.4em;
+            }
+            header #links {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: center;
+            }
+            header #links a {
+                margin: 0 6px;
+                font-size: 1.1em;
+                color: var(--color-black);
+                text-decoration: none;
+            }
+            header #links a:hover {
+                text-decoration: underline;
+            }
+
+            #desc {
+                margin: 8px 0;
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+            }
+            #desc span {
+                font-size: 1.1em;
+                line-height: 1.6em;
+            }
+
+            #wrapper {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-end;
+            }
+
+            #wrapper textarea {
+                resize: none;
+                width: 100%;
+                height: 180px;
+                padding: 24px;
+                border: 3px solid var(--color-black);
+                border-radius: 0 24px 0 0;
+                outline: none;
+                font-size: 1.2em;
+                font-weight: bold;
+                transition: 0.1s;
+            }
+            #wrapper button {
+                margin-top: 12px;
+                background-color: var(--color-black);
+                border: 3px solid var(--color-black);
+                border-radius: 0 0 0 24px;
+                outline: none;
+                padding: 12px 24px;
+                font-size: 1.3em;
+                font-weight: bold;
+                color: var(--color-white);
+                cursor: pointer;
+                transition: 0.1s;
+            }
+            #wrapper button:hover {
+                background-color: var(--color-white);
+                color: var(--color-black);
+            }
+
+            #results {
+                margin: 28px auto;
+                width: 100%;
+            }
+            #results .result {
+                background-color: var(--color-white);
+                border-bottom: 2px solid var(--color-black);
+                padding: 14px 8px;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+                cursor: pointer;
+                transition: 0.1s;
+            }
+            #results .result:nth-last-child(-n+1) {
+                border-bottom: none;
+            }
+            #results .result:hover {
+                background-color: var(--color-black);
+                color: var(--color-white);
+            }
+            #results .result span {
+                font-weight: bold;
+            }
+            #results .result .hash-type {
+                font-size: 1.1em;
+            }
+            #results .result .probability {
+                font-size: 0.9em;
+            }
+           
+            @media screen and (max-width: 720px) {
+                main {
+                    width: 70%;
+                }
+
+                header {
+                    flex-direction: column;
+                    justify-content: initial;
+                }
+            }
+
+            @media screen and (max-width: 480px) {
+                main {
+                    margin: 28px auto;
+                    width: 90%;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <main>
+            <header>
+                <h1 id="title">Hash Cracker</h1>
+                <div id="links">
+                    <a href="https://exploit-notes.hdks.org/">
+                        Exploit Notes
+                    </a>
+                    <a href="https://github.com/hideckies/hash-cracker">
+                        Source
+                    </a>
+                </div>
+            </header>
+            <p id="desc">
+                <span>
+                    Hash Identifier & Cracker online. Currently Hash Identifier is only available, Cracker is not yet. 
+                </span>
+                <span>
+                    Hash Identifier uses AI/Machine learning (Decision Forests) model trained with <a href="https://github.com/google/yggdrasil-decision-forests">Yggdrasil</a>.
+                </span>
+            </p>
+            <div id="wrapper">
+                <textarea type="text" placeholder="Enter hash..." id="hash"></textarea>
+                <button type="button" id="identify">Identify</button>
+            </div>
+            <div id="results">
+            </div>
+        </main>
+    </body>
+</html>

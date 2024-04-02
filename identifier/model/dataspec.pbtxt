@@ -1,0 +1,850 @@
+columns {
+  type: CATEGORICAL
+  name: "type"
+  is_manual_type: true
+  categorical {
+    most_frequent_value: 1
+    number_of_unique_values: 76
+    items {
+      key: "<OOD>"
+      value {
+        index: 0
+        count: 0
+      }
+    }
+    items {
+      key: "Apache MD5 Crypt"
+      value {
+        index: 73
+        count: 375
+      }
+    }
+    items {
+      key: "Argon2"
+      value {
+        index: 72
+        count: 375
+      }
+    }
+    items {
+      key: "Atbash"
+      value {
+        index: 71
+        count: 375
+      }
+    }
+    items {
+      key: "Atlassian PBKDF2 SHA1"
+      value {
+        index: 70
+        count: 375
+      }
+    }
+    items {
+      key: "BCrypt"
+      value {
+        index: 1
+        count: 750
+      }
+    }
+    items {
+      key: "BLAKE2b"
+      value {
+        index: 69
+        count: 375
+      }
+    }
+    items {
+      key: "BLAKE2s"
+      value {
+        index: 68
+        count: 375
+      }
+    }
+    items {
+      key: "BSDi Crypt"
+      value {
+        index: 67
+        count: 375
+      }
+    }
+    items {
+      key: "Base32"
+      value {
+        index: 66
+        count: 375
+      }
+    }
+    items {
+      key: "Base64"
+      value {
+        index: 65
+        count: 375
+      }
+    }
+    items {
+      key: "Binary"
+      value {
+        index: 64
+        count: 375
+      }
+    }
+    items {
+      key: "CISCO Type 7"
+      value {
+        index: 63
+        count: 375
+      }
+    }
+    items {
+      key: "CISCO-ASA MD5"
+      value {
+        index: 62
+        count: 375
+      }
+    }
+    items {
+      key: "CISCO-PIX MD5"
+      value {
+        index: 61
+        count: 375
+      }
+    }
+    items {
+      key: "CRC-16"
+      value {
+        index: 60
+        count: 375
+      }
+    }
+    items {
+      key: "CRC-32"
+      value {
+        index: 59
+        count: 375
+      }
+    }
+    items {
+      key: "CRC-64"
+      value {
+        index: 58
+        count: 375
+      }
+    }
+    items {
+      key: "Caesar"
+      value {
+        index: 57
+        count: 375
+      }
+    }
+    items {
+      key: "DES Crypt"
+      value {
+        index: 56
+        count: 375
+      }
+    }
+    items {
+      key: "Decimal"
+      value {
+        index: 55
+        count: 375
+      }
+    }
+    items {
+      key: "Django Argon2"
+      value {
+        index: 54
+        count: 375
+      }
+    }
+    items {
+      key: "Django BCrypt"
+      value {
+        index: 53
+        count: 375
+      }
+    }
+    items {
+      key: "Django BCrypt SHA256"
+      value {
+        index: 52
+        count: 375
+      }
+    }
+    items {
+      key: "Django DES Crypt"
+      value {
+        index: 51
+        count: 375
+      }
+    }
+    items {
+      key: "Django PBKDF2 SHA1"
+      value {
+        index: 50
+        count: 375
+      }
+    }
+    items {
+      key: "Django PBKDF2 SHA256"
+      value {
+        index: 49
+        count: 375
+      }
+    }
+    items {
+      key: "Django salted MD5"
+      value {
+        index: 48
+        count: 375
+      }
+    }
+    items {
+      key: "Django salted SHA1"
+      value {
+        index: 47
+        count: 375
+      }
+    }
+    items {
+      key: "Grub PBKDF2 SHA512"
+      value {
+        index: 46
+        count: 375
+      }
+    }
+    items {
+      key: "HMAC-SHA1"
+      value {
+        index: 45
+        count: 375
+      }
+    }
+    items {
+      key: "HMAC-SHA256"
+      value {
+        index: 44
+        count: 375
+      }
+    }
+    items {
+      key: "HMAC-SHA512"
+      value {
+        index: 43
+        count: 375
+      }
+    }
+    items {
+      key: "Hex"
+      value {
+        index: 42
+        count: 375
+      }
+    }
+    items {
+      key: "Keccak-224"
+      value {
+        index: 41
+        count: 375
+      }
+    }
+    items {
+      key: "Keccak-256"
+      value {
+        index: 40
+        count: 375
+      }
+    }
+    items {
+      key: "Keccak-384"
+      value {
+        index: 39
+        count: 375
+      }
+    }
+    items {
+      key: "Keccak-512"
+      value {
+        index: 38
+        count: 375
+      }
+    }
+    items {
+      key: "LDAP MD5"
+      value {
+        index: 37
+        count: 375
+      }
+    }
+    items {
+      key: "LDAP SHA1"
+      value {
+        index: 36
+        count: 375
+      }
+    }
+    items {
+      key: "LDAP salted MD5"
+      value {
+        index: 35
+        count: 375
+      }
+    }
+    items {
+      key: "LDAP salted SHA1"
+      value {
+        index: 34
+        count: 375
+      }
+    }
+    items {
+      key: "LDAP salted SHA256"
+      value {
+        index: 33
+        count: 375
+      }
+    }
+    items {
+      key: "LDAP salted SHA512"
+      value {
+        index: 32
+        count: 375
+      }
+    }
+    items {
+      key: "LM"
+      value {
+        index: 31
+        count: 375
+      }
+    }
+    items {
+      key: "MD4"
+      value {
+        index: 30
+        count: 375
+      }
+    }
+    items {
+      key: "MD5"
+      value {
+        index: 29
+        count: 375
+      }
+    }
+    items {
+      key: "MSSQL 2000"
+      value {
+        index: 28
+        count: 375
+      }
+    }
+    items {
+      key: "MSSQL 2005"
+      value {
+        index: 27
+        count: 375
+      }
+    }
+    items {
+      key: "MySQL 3.2.3"
+      value {
+        index: 26
+        count: 375
+      }
+    }
+    items {
+      key: "MySQL 4.1"
+      value {
+        index: 25
+        count: 375
+      }
+    }
+    items {
+      key: "NTLM"
+      value {
+        index: 24
+        count: 375
+      }
+    }
+    items {
+      key: "Oracle 10g"
+      value {
+        index: 23
+        count: 375
+      }
+    }
+    items {
+      key: "Oracle 11g"
+      value {
+        index: 22
+        count: 375
+      }
+    }
+    items {
+      key: "PBKDF2-HMAC-SHA256"
+      value {
+        index: 21
+        count: 375
+      }
+    }
+    items {
+      key: "PBKDF2-HMAC-SHA512"
+      value {
+        index: 20
+        count: 375
+      }
+    }
+    items {
+      key: "PHPass"
+      value {
+        index: 19
+        count: 375
+      }
+    }
+    items {
+      key: "PostgreSQL MD5"
+      value {
+        index: 18
+        count: 375
+      }
+    }
+    items {
+      key: "ROT13"
+      value {
+        index: 17
+        count: 375
+      }
+    }
+    items {
+      key: "ROT47"
+      value {
+        index: 16
+        count: 375
+      }
+    }
+    items {
+      key: "SCRAM"
+      value {
+        index: 15
+        count: 375
+      }
+    }
+    items {
+      key: "SHA1"
+      value {
+        index: 14
+        count: 375
+      }
+    }
+    items {
+      key: "SHA224"
+      value {
+        index: 13
+        count: 375
+      }
+    }
+    items {
+      key: "SHA256"
+      value {
+        index: 12
+        count: 375
+      }
+    }
+    items {
+      key: "SHA3-224"
+      value {
+        index: 11
+        count: 375
+      }
+    }
+    items {
+      key: "SHA3-256"
+      value {
+        index: 10
+        count: 375
+      }
+    }
+    items {
+      key: "SHA3-384"
+      value {
+        index: 9
+        count: 375
+      }
+    }
+    items {
+      key: "SHA3-512"
+      value {
+        index: 74
+        count: 374
+      }
+    }
+    items {
+      key: "SHA384"
+      value {
+        index: 8
+        count: 375
+      }
+    }
+    items {
+      key: "SHA512"
+      value {
+        index: 7
+        count: 375
+      }
+    }
+    items {
+      key: "Vigenere"
+      value {
+        index: 75
+        count: 325
+      }
+    }
+    items {
+      key: "md5crypt"
+      value {
+        index: 6
+        count: 375
+      }
+    }
+    items {
+      key: "scrypt"
+      value {
+        index: 5
+        count: 375
+      }
+    }
+    items {
+      key: "sha1crypt"
+      value {
+        index: 4
+        count: 375
+      }
+    }
+    items {
+      key: "sha256crypt"
+      value {
+        index: 3
+        count: 375
+      }
+    }
+    items {
+      key: "sha512crypt"
+      value {
+        index: 2
+        count: 375
+      }
+    }
+  }
+}
+columns {
+  type: CATEGORICAL
+  name: "encoded_text"
+  is_manual_type: true
+  categorical {
+    most_frequent_value: 0
+    number_of_unique_values: 1
+    items {
+      key: "<OOD>"
+      value {
+        index: 0
+        count: 28069
+      }
+    }
+  }
+}
+columns {
+  type: CATEGORICAL
+  name: "scheme"
+  is_manual_type: false
+  categorical {
+    most_frequent_value: 1
+    number_of_unique_values: 20
+    items {
+      key: "$1$"
+      value {
+        index: 19
+        count: 375
+      }
+    }
+    items {
+      key: "$2a$"
+      value {
+        index: 18
+        count: 375
+      }
+    }
+    items {
+      key: "$2b$"
+      value {
+        index: 17
+        count: 375
+      }
+    }
+    items {
+      key: "$5$"
+      value {
+        index: 16
+        count: 375
+      }
+    }
+    items {
+      key: "$6$"
+      value {
+        index: 15
+        count: 375
+      }
+    }
+    items {
+      key: "$P$"
+      value {
+        index: 14
+        count: 375
+      }
+    }
+    items {
+      key: "$apr1$"
+      value {
+        index: 13
+        count: 375
+      }
+    }
+    items {
+      key: "$argon2id$"
+      value {
+        index: 12
+        count: 375
+      }
+    }
+    items {
+      key: "$scram$"
+      value {
+        index: 11
+        count: 375
+      }
+    }
+    items {
+      key: "$scrypt$"
+      value {
+        index: 10
+        count: 375
+      }
+    }
+    items {
+      key: "$sha1$"
+      value {
+        index: 9
+        count: 375
+      }
+    }
+    items {
+      key: "<OOD>"
+      value {
+        index: 0
+        count: 0
+      }
+    }
+    items {
+      key: "None"
+      value {
+        index: 1
+        count: 21699
+      }
+    }
+    items {
+      key: "{MD5}"
+      value {
+        index: 8
+        count: 375
+      }
+    }
+    items {
+      key: "{PKCS5S2}"
+      value {
+        index: 7
+        count: 375
+      }
+    }
+    items {
+      key: "{SHA}"
+      value {
+        index: 6
+        count: 375
+      }
+    }
+    items {
+      key: "{SMD5}"
+      value {
+        index: 5
+        count: 375
+      }
+    }
+    items {
+      key: "{SSHA256}"
+      value {
+        index: 4
+        count: 375
+      }
+    }
+    items {
+      key: "{SSHA512}"
+      value {
+        index: 3
+        count: 375
+      }
+    }
+    items {
+      key: "{SSHA}"
+      value {
+        index: 2
+        count: 375
+      }
+    }
+  }
+}
+columns {
+  type: NUMERICAL
+  name: "num_of_chars"
+  is_manual_type: false
+  numerical {
+    mean: 58.299026327814687
+    min_value: 3
+    max_value: 282
+    standard_deviation: 47.308738533636351
+  }
+}
+columns {
+  type: NUMERICAL
+  name: "contains_bit_only"
+  is_manual_type: true
+  numerical {
+    mean: 0.01335723575521108
+    min_value: 0
+    max_value: 1
+    standard_deviation: 0.11479904184352233
+  }
+}
+columns {
+  type: NUMERICAL
+  name: "contains_decimal_only"
+  is_manual_type: true
+  numerical {
+    mean: 0.070371542057717312
+    min_value: 0
+    max_value: 1
+    standard_deviation: 0.25577214102817419
+  }
+}
+columns {
+  type: NUMERICAL
+  name: "contains_hex_only"
+  is_manual_type: true
+  numerical {
+    mean: 0.436992512917853
+    min_value: 0
+    max_value: 1
+    standard_deviation: 0.496014169728641
+  }
+}
+columns {
+  type: NUMERICAL
+  name: "contains_alpha_only"
+  is_manual_type: true
+  numerical {
+    mean: 0.052128370065731663
+    min_value: 0
+    max_value: 1
+    standard_deviation: 0.22228585897447861
+  }
+}
+columns {
+  type: NUMERICAL
+  name: "contains_upper_case_only"
+  is_manual_type: true
+  numerical {
+    mean: 0.075925340082252449
+    min_value: 0
+    max_value: 1
+    standard_deviation: 0.26487861902321741
+  }
+}
+columns {
+  type: NUMERICAL
+  name: "contains_lower_case_only"
+  is_manual_type: true
+  numerical {
+    mean: 0.40388062849309292
+    min_value: 0
+    max_value: 1
+    standard_deviation: 0.49067409389646527
+  }
+}
+columns {
+  type: NUMERICAL
+  name: "contains_mixed_upper_lower_case"
+  is_manual_type: true
+  numerical {
+    mean: 0.447924355864881
+    min_value: 0
+    max_value: 1
+    standard_deviation: 0.49728073287421104
+  }
+}
+columns {
+  type: NUMERICAL
+  name: "contains_equal"
+  is_manual_type: true
+  numerical {
+    mean: 0.18039298393616648
+    min_value: 0
+    max_value: 1
+    standard_deviation: 0.38451444092878029
+  }
+}
+columns {
+  type: NUMERICAL
+  name: "contains_slash"
+  is_manual_type: true
+  numerical {
+    mean: 0.18970789834440577
+    min_value: 0
+    max_value: 1
+    standard_deviation: 0.39206990658574448
+  }
+}
+columns {
+  type: NUMERICAL
+  name: "contains_dot"
+  is_manual_type: true
+  numerical {
+    mean: 0.13135786846637842
+    min_value: 0
+    max_value: 1
+    standard_deviation: 0.33779132442729792
+  }
+}
+columns {
+  type: NUMERICAL
+  name: "contains_colon"
+  is_manual_type: true
+  numerical {
+    mean: 0.018559527575661712
+    min_value: 0
+    max_value: 1
+    standard_deviation: 0.13496322281210524
+  }
+}
+columns {
+  type: NUMERICAL
+  name: "contains_special_chars"
+  is_manual_type: true
+  numerical {
+    mean: 0.44110513550564168
+    min_value: 0
+    max_value: 1
+    standard_deviation: 0.49651927952113922
+  }
+}
+created_num_rows: 28449
